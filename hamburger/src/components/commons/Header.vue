@@ -3,16 +3,23 @@
 		<div class="nav_h">
 			<ul>
 				<li>
-					<i class="fa fa-meetup" 
-						aria-hidden="true"
-						>
-					</i>
-					<span 
-						v-for="(item,index) in list"
-						 :key="index"
-						 >
-						 {{item.title}}
-					</span>
+					<div>
+						<img src="../../../static/header-icon/h-icon01.png" />
+					</div>
+					
+					<span>预约送餐</span>
+				</li>
+				<li>
+					<div>
+						<img src="../../../static/header-icon/h-icon02.png" />
+					</div>
+					<span>K Coffee</span>
+				</li>
+				<li>
+					<div>
+						<img src="../../../static/header-icon/h-icon03.png" />
+					</div>
+					<span>我的</span>
 				</li>
 			</ul>
 		</div>
@@ -34,8 +41,11 @@
 					{name:'coffee',title:'K Coffee'},
 					{name:'my',title:'我的'}
 				],
-				h_icon:[
-				]
+//				h_icon:[
+//					'../../assets/header-icon/h-icon01.png',
+//					'../../assets/header-icon/h-icon02.png',
+//					'../../assets/header-icon/h-icon03.png',
+//				]
 			}
 		}
 	}
@@ -49,19 +59,27 @@
 		.h(74);
 		.nav_h{
 			ul{
-				background:pink;
+				/*background:pink;*/
 				.w(375);
 				.h(74);
 				display:flex;
 				justify-content: space-between;
 				li{
+					display:flex;
+					flex-direction: column;
+					justify-content: space-between;
 					width: 33%;
-					.h(74);
-					.fs(14);
+					/*.margin-left(30);*/
 					text-align:center;
-					i{
-						display: block;
-						.fs(40);
+					div{
+						img{
+							.w(42);
+							.h(42);
+							text-align:center;
+						}
+					}
+					span{
+						.fs(14);
 					}
 				}
 			}

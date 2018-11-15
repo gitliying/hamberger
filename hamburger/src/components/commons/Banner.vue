@@ -1,21 +1,13 @@
 <template>
 	<div class="banner">
 		
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide" v-for="(item,index) in list" :key="index">
-					<!--<img :src="item" />--> 
-					<img :src="item">
-					<!--{{item}}-->
-					<!--<img src="../../assets/lunbotu/lunbotu1.jpg" />-->
-				</div>
-				<!--<div class="swiper-slide">Slide 2</div>
-				<div class="swiper-slide">Slide 3</div>
-				<div class="swiper-slide">Slide 4</div>-->
-			</div>
-			<!--<div class="swiper-scrollbar"></div>-->
-			<div class="swiper-pagination"></div>
-		</div>
+		<mt-swipe :auto="4000" @change="handleChange">
+		  <mt-swipe-item v-for="(item,index) in list" :key="index">
+		  	<img :src="item.src" />
+		  	<!--<img src="../../assets/lunbotu/lunbotu1.jpg" />-->
+		  </mt-swipe-item>
+		</mt-swipe>
+		
 	</div>
 </template>
 
@@ -24,38 +16,35 @@
 	import Vue from 'vue';
 	import Swiper from 'swiper';
 	
+	//mint ui
+	import { Swipe, SwipeItem } from 'mint-ui';
+	Vue.component(Swipe.name, Swipe);
+	Vue.component(SwipeItem.name, SwipeItem);
+	
 	export default{
 		name:'Banner',
 		components:{},
 		data(){
 			return{
+				bannerimg:'../../assets/lunbotu/lunbotu1.jpg',
 				list:[
-					'../../assets/lunbotu/lunbotu1.jpg',
-					'../../assets/lunbotu/lunbotu2.jpg',
-					'../../assets/lunbotu/lunbotu3.jpg',
-					'../../assets/lunbotu/lunbotu4.jpg',
-					'../../assets/lunbotu/lunbotu5.jpg'
-//					1,2,3,4,5
+				    
+					{src:'../../../static/lunbotu/lunbotu1.jpg'},
+					{src:'../../../static/lunbotu/lunbotu2.jpg'},
+					{src:'../../../static/lunbotu/lunbotu3.jpg'},
+					{src:'../../../static/lunbotu/lunbotu4.jpg'},
+					{src:'../../../static/lunbotu/lunbotu5.jpg'}
 				]
 			}
 		},
 		methods:{
-			getBanner(){
-				Vue.nextTick(()=>{
-					//实例化swiper
-					this.mySwiper = new Swiper ('.swiper-container', {
-				       loop: true,
-				       autoplay:true,
-				        // 如果需要分页器
-					    pagination: {
-					      el: '.swiper-pagination',
-					    }
-				    })
-				})
-			}
+		 	handleChange(index){
+		 		auto:3000
+		 	}
 		},
 		created(){
-			this.getBanner();
+//			this.getBanner();
+			this.handleChange();
 		}
 	}
 			
@@ -69,17 +58,17 @@
 .banner{
 	.w(375);
 	.h(158);
-	.swiper-container{
-		.swiper-wrapper{
-			.swiper-slide{
+	/*.swiper-container{*/
+		/*.swiper-wrapper{*/
+			/*.swiper-slide{*/
 				img{
 					.w(375);
 					.h(158);
 				}
-			}
+			/*}*/
 			
-		}
-	}
+		/*}*/
+	/*}*/
 }
 </style>
 <style>
