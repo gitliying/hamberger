@@ -1,0 +1,30 @@
+<template>
+	<div class="home">
+		<Banner></Banner>
+		<Header></Header>
+   </div>
+</template>
+<script>
+	
+//引入Banner组件
+import Banner from '../../commons/Banner';
+//引入Header组件
+import Header from '../../commons/Header';
+
+export default{
+	name:'Home',
+	components:{Banner,Header},//注册组件
+	data(){
+		return {
+			test:'我是home页面'
+		}
+
+	}
+}
+</script>
+<style lang="less" scoped>
+ @import '../../../styles/main.less';	
+.home{
+	/*background:@bg-color;*/
+}
+</style>
