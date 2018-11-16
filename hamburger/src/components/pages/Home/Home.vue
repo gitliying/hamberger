@@ -2,6 +2,7 @@
 	<div class="home">
 		<Banner></Banner>
 		<Header></Header>
+		<CarNav></CarNav>
    </div>
 </template>
 <script>
@@ -10,10 +11,11 @@
 import Banner from '../../commons/Banner';
 //引入Header组件
 import Header from '../../commons/Header';
+import CarNav from '../../commons/CarNav' ;
 
 export default{
 	name:'Home',
-	components:{Banner,Header},//注册组件
+	components:{Banner,Header,CarNav},//注册组件
 	data(){
 		return {
 			test:'我是home页面'

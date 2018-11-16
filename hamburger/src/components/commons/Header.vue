@@ -2,18 +2,13 @@
 	<div class="header">
 		<div class="nav_h">
 			<ul>
-				<li>
-					<i class="fa fa-meetup" 
-						aria-hidden="true"
-						>
-					</i>
-					<span 
-						v-for="(item,index) in list"
-						 :key="index"
-						 >
-						 {{item.title}}
-					</span>
-				</li>
+				<router-link tag="li" :to="item.url"  v-for="(item,index) in list" :key="index">
+					<div>
+						<img :src="item.img" />
+					</div>
+					
+					<span>{{item.title}}</span>
+				</router-link>
 			</ul>
 		</div>
 
@@ -30,12 +25,15 @@
 		data(){
 			return{
 				list:[
-					{name:'order',title:'预约送餐'},
-					{name:'coffee',title:'K Coffee'},
-					{name:'my',title:'我的'}
+					{name:'order',title:'预约送餐',img:"../../../static/header-icon/h-icon01.png",url:'/order'},
+					{name:'coffee',title:'K Coffee',img:"../../../static/header-icon/h-icon02.png",url:'/coffee'},
+					{name:'my',title:'我的',img:"../../../static/header-icon/h-icon03.png",url:'/my'}
 				],
-				h_icon:[
-				]
+//				h_icon:[
+//					'../../assets/header-icon/h-icon01.png',
+//					'../../assets/header-icon/h-icon02.png',
+//					'../../assets/header-icon/h-icon03.png',
+//				]
 			}
 		}
 	}
@@ -47,21 +45,30 @@
 	.header{
 		.w(375);
 		.h(74);
+		border-bottom:1px #666 solid; 
 		.nav_h{
 			ul{
-				background:pink;
+				/*background:pink;*/
 				.w(375);
 				.h(74);
 				display:flex;
 				justify-content: space-between;
 				li{
+					display:flex;
+					flex-direction: column;
+					justify-content: space-between;
 					width: 33%;
-					.h(74);
-					.fs(14);
+					/*.margin-left(30);*/
 					text-align:center;
-					i{
-						display: block;
-						.fs(40);
+					div{
+						img{
+							.w(42);
+							.h(42);
+							text-align:center;
+						}
+					}
+					span{
+						.fs(14);
 					}
 				}
 			}
