@@ -1,9 +1,20 @@
 <template>
 	<div class="login">
+<<<<<<< HEAD
         there's login
         <div class="top">
         	<p>
         		<i @click="backToMy()" class="fa fa-angle-left" aria-hidden="true"></i>
+=======
+        <div class="top">
+        	<p>
+        		<i 
+        			@click="backToMy()" 
+        			class="fa fa-angle-left" 
+        			aria-hidden="true"
+        			>
+        		</i>
+>>>>>>> bb2de7e102e8de652408f74648faad82378d6210
         	</p>
         <p>
         	<i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -20,24 +31,49 @@
         			<i class="fa fa-mobile" aria-hidden="true"></i>
         		</span>
         		
+<<<<<<< HEAD
         		<input type="text" placeholder="请输入手机号" />
+=======
+        		<input 
+        			type="text" 
+        			v-model="userEmail"
+        			placeholder="请输入邮箱" />
+>>>>>>> bb2de7e102e8de652408f74648faad82378d6210
         	</div>
         	<div>
         		<span>
         			<i class="fa fa-key" aria-hidden="true"></i>
         		</span>
+<<<<<<< HEAD
         		<input type="text" placeholder="请输入密码"/>
+=======
+        		<input 
+        			type="password"
+        			v-model="userPass"
+        			@keyup.enter="backToHome()"
+        			placeholder="请输入密码"/>
+>>>>>>> bb2de7e102e8de652408f74648faad82378d6210
         	</div>
         	<p>
         		<input type="checkbox" />
         		记住我
         	</p>
+<<<<<<< HEAD
         	<div @click="backToMy()" class="delu">登录</div>
         	<p>快速注册</p>
+=======
+        	<div 
+        		@click="backToHome()" 
+        		class="delu"
+        		>
+        		登录</div>
+        	<p @click="backToReg()" >快速注册</p>
+>>>>>>> bb2de7e102e8de652408f74648faad82378d6210
         	
         </div>
 	</div>
 </template>
+<<<<<<< HEAD
   <script>
  	export default{
  		name:'Login',
@@ -49,6 +85,38 @@
 			
 		},
 		methods:{
+=======
+
+<script>
+	export default{
+		name:'Login',
+		components:{},
+		data(){
+			return{
+				userEmail:'',
+				userPass:'',
+				email:localStorage.getItem('u_email'),
+				pass:localStorage.getItem('u_pass')
+			}
+			
+		},
+		methods:{
+				backToHome(){
+					if(this.userEmail==this.email && this.userPass==this.pass && this.email!=''){
+						if(confirm('登录成功,是否跳转到首页？')){
+							this.$router.push('/');
+						}
+					}else{
+//						console.log(this.userEmail)
+//						console.log(this.userPass)
+						alert('哇哦，登录失败了呢');
+					}
+					
+				},
+				backToReg(){
+					this.$router.push('/my/reg');
+				},
+>>>>>>> bb2de7e102e8de652408f74648faad82378d6210
 				backToMy(){
 					this.$router.push('/');
 				}
@@ -56,9 +124,16 @@
 			}
 	}
 </script>
+<<<<<<< HEAD
  <style lang="less" scoped>
 @import '../../../styles/main.less';
  .login{
+=======
+
+<style lang="less" scoped>
+@import '../../../styles/main.less';
+.login{
+>>>>>>> bb2de7e102e8de652408f74648faad82378d6210
 	.top{
 		p:nth-child(1){
 			.h(44);
@@ -110,7 +185,11 @@
 				.h(40);
 				.fs(16);
 			}
+<<<<<<< HEAD
  		}
+=======
+		}
+>>>>>>> bb2de7e102e8de652408f74648faad82378d6210
 		p{
 			.margin-top(20);
 			.margin-left(20);
@@ -131,4 +210,9 @@
 			box-shadow:0px 0px 0px #fff;
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+}
+</style>
+>>>>>>> bb2de7e102e8de652408f74648faad82378d6210
