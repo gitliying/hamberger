@@ -2,7 +2,12 @@
 	<div class="login">
         <div class="top">
         	<p>
-        		<i @click="backToMy()" class="fa fa-angle-left" aria-hidden="true"></i>
+        		<i 
+        			@click="backToMy()" 
+        			class="fa fa-angle-left" 
+        			aria-hidden="true"
+        			>
+        		</i>
         	</p>
         <p>
         	<i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -19,20 +24,31 @@
         			<i class="fa fa-mobile" aria-hidden="true"></i>
         		</span>
         		
-        		<input type="text" placeholder="请输入手机号" />
+        		<input 
+        			type="text" 
+        			v-model="userEmail"
+        			placeholder="请输入邮箱" />
         	</div>
         	<div>
         		<span>
         			<i class="fa fa-key" aria-hidden="true"></i>
         		</span>
-        		<input type="text" placeholder="请输入密码"/>
+        		<input 
+        			type="password"
+        			v-model="userPass"
+        			@keyup.enter="backToHome()"
+        			placeholder="请输入密码"/>
         	</div>
         	<p>
         		<input type="checkbox" />
         		记住我
         	</p>
-        	<div @click="backToMy()" class="delu">登录</div>
-        	<p>快速注册</p>
+        	<div 
+        		@click="backToHome()" 
+        		class="delu"
+        		>
+        		登录</div>
+        	<p @click="backToReg()" >快速注册</p>
         	
         </div>
 	</div>
@@ -44,10 +60,29 @@
 		components:{},
 		data(){
 			return{
+				userEmail:'',
+				userPass:'',
+				email:localStorage.getItem('u_email'),
+				pass:localStorage.getItem('u_pass')
 			}
 			
 		},
 		methods:{
+				backToHome(){
+					if(this.userEmail==this.email && this.userPass==this.pass && this.email!=''){
+						if(confirm('登录成功,是否跳转到首页？')){
+							this.$router.push('/');
+						}
+					}else{
+//						console.log(this.userEmail)
+//						console.log(this.userPass)
+						alert('哇哦，登录失败了呢');
+					}
+					
+				},
+				backToReg(){
+					this.$router.push('/my/reg');
+				},
 				backToMy(){
 					this.$router.push('/');
 				}

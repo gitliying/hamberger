@@ -1,16 +1,17 @@
 <template>
-	<div class="carnav">
+	<div class="carnav" v-if="show">
 		<div class="carnav_left">
 		   <i class="fa fa-cart-arrow-down car_left" aria-hidden="true"></i>
 		   <div>
-		   	<p>￥99.0</p>
+		   	<p class="cartDeti">￥<span class="price">{{price}}</span>  数量：<span class="num">{{num}}</span></p>
 		   	<p>另需送餐费：￥9.0</p>
+			   <!-- {{show}} -->
 		   </div>
 		</div>
-		<div class="carnav_right">
-			<span>去购物车</span>
-			<i class="fa fa-chevron-right car_right" aria-hidden="true"></i>
-		</div>
+			<div class="carnav_right" @click="goCart">
+				<span>去购物车</span>
+				<i class="fa fa-chevron-right car_right" aria-hidden="true"></i>
+			</div>
 	</div>
 </template>
 
@@ -24,6 +25,39 @@
 			return{
 				test:'carnav'
 			}
+		},
+		methods:{
+			goCart(){
+				var data = {
+					"num":this.num,
+					"price":this.price,
+					"list":this.carLists,
+				}
+                    this.$axios.post('/api/kfcList/carList',{"carList":data})
+                .then((res)=>{
+					this.$router.push('/car');
+                })
+                .catch((err)=>{
+                    console.log(err);
+                })
+			},
+			carList(){
+				
+            }, 
+		},
+		computed:{
+			show(){
+				return this.$store.state.cartList.length;
+			},
+			num(){
+				return this.$store.state.num;
+			},
+			price(){
+				return this.$store.state.price;
+			},
+			carLists(){
+				return this.$store.state.cartList
+			}
 		}
 	}
 
@@ -36,6 +70,7 @@
 		position:fixed;
 		left:0;
 		bottom:0;
+		min-width: 375px;
 		.w(375);
 		.h(60);
 		background:#5688cf;
@@ -52,7 +87,10 @@
 			 div{
 			 	.margin-left(10);
 			 	p:nth-child(1){
-			 		.fs(20);
+					 .fs(18);
+					 .price{color: #e02d3f;.margin-right(10);.margin-left(5);}
+					 .num{color: #e02d3f}
+					 
 			 	}
 			 	p:nth-child(2){
 			 		.fs(14);

@@ -1,4 +1,5 @@
 <template>
+<div>
 	<div class="banner">
 	    <mt-swipe :auto="4000" :continuous="true"> 
             <mt-swipe-item v-for="(item,index) in list " :key="index">
@@ -12,6 +13,9 @@
 			<mt-swipe-item>3</mt-swipe-item>
 		</mt-swipe> -->
 	</div>
+	<div class="tem"></div>
+</div>
+	
 </template>
 
 <script>
@@ -48,7 +52,10 @@
 <style lang="less" scoped>
 	@import '../../styles/main.less';
 	
+// .tem{height: 158px;width: 100%;}
 .banner{
+	min-width: 375px;
+	min-height: 158px;
 	.w(375);
 	.h(158);
 	img{

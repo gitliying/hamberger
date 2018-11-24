@@ -1,12 +1,13 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
+import App from './App';
 //引入重置样式 
-import './styles/common/base.css'
+import './styles/common/base.css';
 //引入路由
-import router from './router/index.js'
-
+import router from './router/index.js';
+//引入store 
+import store from './store/index.js';
 //mint-ui 轮播图--start
 import { Swipe, SwipeItem } from 'mint-ui'; 
 Vue.component(Swipe.name, Swipe);
@@ -32,6 +33,7 @@ new Vue({
   el: '#app',
   router,
   Vuex,
+  store,
   components: { App },
   template: '<App/>'
 })

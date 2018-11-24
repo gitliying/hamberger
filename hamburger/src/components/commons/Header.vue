@@ -45,7 +45,10 @@
 	.header{
 		.w(375);
 		.h(74);
-		border-bottom:1px #666 solid; 
+		// border-bottom:1px #666 solid; 
+		background: white;
+		.margin-bottom(5);
+		.padding(0,0,10,0);
 		.nav_h{
 			ul{
 				/*background:pink;*/
