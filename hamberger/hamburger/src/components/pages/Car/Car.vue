@@ -12,8 +12,8 @@
         <div class="song">
             
             <div class="addr">
-                <div >配送至</div>
-                <i class="fa fa-map-marker icon"></i><span class="ti">广州天河区(慧通产业B9栋)</span>
+                <div>配送至</div>
+                <i class="fa fa-map-marker icon" @click="toLocation()"></i><span class="ti">{{searchValue}}</span>
                 <div style="float:right"><i class="fa fa-chevron-right car_right cr"></i></div>
             </div>
             <div class="time">
@@ -44,20 +44,24 @@
             <span>数量：</span><span class="num">{{num}}</span>
             <span>小计：</span><span class="pri">{{price}}</span>
         </div>
-		<div class="temm"></div>
+		<div class="temm">
+            <p>付款</p>
+        </div>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
+import Location from './Location';
 export default{
     name:'Car',
-    components:{},
+    components:{Location},
     data(){
         return{
             lists:null,
             num:0,
             price:0,
-
+            searchValue:localStorage.getItem('searchValue')
         }
     },
     methods:{
@@ -79,16 +83,19 @@ export default{
             this.$router.push('/')
         },
         getData(){
-                this.$axios.post('/api/kfcList/readCarlist')
-                .then((res)=>{
-                    this.lists=res.data.list;
-                    this.num=res.data.num;
-                    this.price=res.data.price;
-                })
-                .catch((err)=>{
-                    console.log("读取错误"+err);
-                })
-            },
+            this.$axios.post('/api/kfcList/readCarlist')
+            .then((res)=>{
+                this.lists=res.data.list;
+                this.num=res.data.num;
+                this.price=res.data.price;
+            })
+            .catch((err)=>{
+                console.log("读取错误"+err);
+            })
+        },
+        toLocation(){
+            this.$router.push('/location');
+        },    
     },
     // computed:{
     //     list(){
@@ -197,6 +204,23 @@ export default{
     .cacular{
         text-align: right;padding-right:10px;font-size: 20px; 
     }
-    .temm{height:80px;width: 100%}
+    .temm{
+        height:80px;
+        width: 100%;
+        position: relative;
+        p{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            .h(40);
+            .lh(40);
+            .fs(16);
+            color: #fff;
+            text-align: center;
+            background: #d90305;
+        }
+        
+    }
 }
 </style>

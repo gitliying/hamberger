@@ -18,6 +18,9 @@ Vue.use(Router)
 
 
   import Car from '../components/pages/Car/Car';
+  import Location from '../components/pages/Car/Location';
+  // import BMapComponent from '../components/pages/Car/BMapComponent';
+
 export default new Router({
   routes: [
     {
@@ -28,7 +31,12 @@ export default new Router({
     {
       path: '/car',
       name: 'Car',
-      component: Car,
+      component: Car
+    },
+    {
+      path: '/location',
+      name: 'Location',
+      component: Location
     },
     {
       path: '/my',
