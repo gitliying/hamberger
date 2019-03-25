@@ -92,16 +92,23 @@
 				}
 			},
 			backToLogin(){
-				console.log('user:'+this.userEmail)
 				//判断userEmail userPass 是否都正确
 				if(this.userErr==false&&this.passErr==false&&this.userEmail!='' && this.reg.test(this.userEmail) && this.pass.test(this.userPass)){
+							let apply = {
+								u_email: this.userEmail,
+								u_pass:this.userPass,
+								code:1
+								}
 					//拿到userEmail，pass 存储到localStorage
-					 localStorage.setItem("u_email",this.userEmail);
-		        	 localStorage.setItem("u_pass",this.userPass);
+							window.localStorage.setItem('applyParams', JSON.stringify(apply))
+					//  localStorage.setItem("u_email",this.userEmail);
+		        	//  localStorage.setItem("u_pass",this.userPass);
 //		        	 if(){
 						alert('注册成功，请登录');
 						this.$router.push('/my/login');
 //					}
+
+
 				}else{
 					alert('哇哦！亲，注册失败了，请重试');
 				}

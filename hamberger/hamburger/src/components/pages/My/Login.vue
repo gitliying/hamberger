@@ -62,20 +62,19 @@
 			return{
 				userEmail:'',
 				userPass:'',
-				email:localStorage.getItem('u_email'),
-				pass:localStorage.getItem('u_pass')
+				applyParams:JSON.parse(window.localStorage.getItem('applyParams'))
 			}
 			
 		},
 		methods:{
 				backToHome(){
-					if(this.userEmail==this.email && this.userPass==this.pass && this.email!=''){
+					console.log(this.applyParams)
+					if(this.userEmail==this.applyParams.u_email && this.userPass==this.applyParams.u_pass && this.email!=''){
 						if(confirm('登录成功,是否跳转到首页？')){
+							window.localStorage.setItem('isLogin',1)
 							this.$router.push('/');
 						}
 					}else{
-//						console.log(this.userEmail)
-//						console.log(this.userPass)
 						alert('哇哦，登录失败了呢');
 					}
 					
@@ -90,13 +89,13 @@
 			},
 			created(){
 				//判断是否已经是登录状态
-			this.email = localStorage.getItem('u_email');
+			this.email = localStorage.getItem('isLogin');
 			if(this.email){
 				this.$router.push('/my/info');
 			}
-			// else{
-			// 	this.$router.push('/my/login');
-			// }
+			else{
+				this.$router.push('/my/login');
+			}
 			}
 	}
 </script>

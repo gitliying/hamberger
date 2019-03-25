@@ -8,7 +8,7 @@
         		<i class="fa fa-user-circle" aria-hidden="true"></i>
         	</p>
         	<div class="welcome">
-        		<p>{{userEmail}}</p>
+        		<p>{{userEmail.u_email}}</p>
         		<div>Welcome to 派乐汉堡！</div>
         	</div>
         	<div @click="backToLogin()" class="delu">退出登录</div>
@@ -23,7 +23,7 @@
 		components:{},
 		data(){
 			return{
-				userEmail:email,
+				userEmail:JSON.parse(window.localStorage.getItem('applyParams')),
 			}
 			
 		},
@@ -33,16 +33,14 @@
 				},
 				backToLogin(){
 					this.$router.push('/my/login');
-					localStorage.clear();
-//					console.log(email);
-//					console.log(typeof(email))
+					localStorage.removeItem('isLogin');
 
 				}
 				
 			},
 		created(){
 			//拿到存在localStorage的userEmail
-	        this.userEmail = localStorage.getItem('u_email');
+	        // this.userEmail = localStorage.getItem('u_email');
 	        
 		}
 	}
