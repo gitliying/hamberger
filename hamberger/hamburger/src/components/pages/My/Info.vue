@@ -34,7 +34,6 @@
 				backToLogin(){
 					this.$router.push('/my/login');
 					localStorage.removeItem('isLogin');
-
 				}
 				
 			},
